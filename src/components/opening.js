@@ -3,9 +3,21 @@ import { Text,StyleSheet, Image, ScrollView }  from 'react-native';
 import Button from './common/Button';
 import Intro from './opening/Intro';
 import IntroBlock from './opening/IntroBlock';
+import { StackNavigator } from 'react-navigation';
+import InitialScreen from './Identity/Initial';
 
-export default class Opening extends React.Component{
+
+  class Opening extends React.Component{
+    
+    static navigationOptions = {
+        title: 'Tripping',
+
+      };
+
     render(props) {
+
+        const { navigate } = this.props.navigation;
+
         return(
             <ScrollView>
             <Intro>
@@ -15,7 +27,7 @@ export default class Opening extends React.Component{
             <IntroBlock>
             <Text >Hey,{"\n"}
             {"\n"}
-            Welcome to Tripping,here you can add all details regarding your trip.Listing a few things that you can do using Tripping. {"\n"}
+            Welcome to Tripping,here's what you can do using Tripping.{"\n"}
             {"\n"}
             1)Create your own Trip Group,add friends participating in the Trip and share all information.{"\n"}
             {"\n"}
@@ -27,13 +39,31 @@ export default class Opening extends React.Component{
             </Text>
             </IntroBlock>
             <IntroBlock>
-            <Button />
+            <Button onPress={ () => this.props.navigation.navigate('Initial') } buttonText={'Get Started'} />
             </IntroBlock>
             </Intro>
             </ScrollView>
         );  
     }
 }
+
+const Stacks = StackNavigator({
+    Opening: {
+      screen: Opening
+    },
+    Initial:{
+      screen: InitialScreen
+    }
+});
+
+
+export default class App extends React.Component {
+    render() {
+      return (
+        <Stacks />
+      );
+    }
+  }
 
 
 const styles = StyleSheet.create({
