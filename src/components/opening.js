@@ -1,14 +1,14 @@
 import React  from 'react';
 import { Text,StyleSheet, Image, ScrollView }  from 'react-native';
 import Button from './common/Button';
-import Intro from './opening/Intro';
-import IntroBlock from './opening/IntroBlock';
+import Intro from './opening/Block';
+import IntroBlock from  './opening/BlockDetail';
 import { StackNavigator } from 'react-navigation';
 import InitialScreen from './Identity/Initial';
 
 
   class Opening extends React.Component{
-    
+
     static navigationOptions = {
         title: 'Tripping',
 

@@ -14,7 +14,7 @@ const Button = (props) => {
 const styles = StyleSheet.create({
    
     buttonStyle: {
-       flex: 1,  
+      
        alignSelf:'stretch',
        backgroundColor: '#fff',
        borderRadius: 5,

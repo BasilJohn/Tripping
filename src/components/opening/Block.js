@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 1,
         marginLeft:2,
-        marginRight:2
-       
+        marginRight:2,
+        flex:1
      }
    
    });
