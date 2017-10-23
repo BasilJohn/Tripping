@@ -5,12 +5,17 @@ import { StackNavigator } from 'react-navigation';
 
 
  export default class Initial extends React.Component{
-    
-   render() {
+    static navigationOptions = {
+        title: 'Setup',
+
+      };
+
+   render(props) {
+    const { navigate } = this.props.navigation;
     return (
        <View style={styles.parentStyle}>
        <View style={styles.childStyle}>    
-        <Button  buttonText={'Sign Up'} />
+        <Button onPress={() => this.props.navigation.navigate('SignUp')}  buttonText={'Sign Up'} />
         </View>
         <View style={styles.childStyle} >    
         <Button buttonText={'Login'} />

@@ -5,12 +5,13 @@ import Intro from './opening/Block';
 import IntroBlock from  './opening/BlockDetail';
 import { StackNavigator } from 'react-navigation';
 import InitialScreen from './Identity/Initial';
+import SignUpScreen from './Identity/SignUp';
 
 
   class Opening extends React.Component{
 
     static navigationOptions = {
-        title: 'Tripping',
+        title: 'Welcome',
 
       };
 
@@ -53,6 +54,9 @@ const Stacks = StackNavigator({
     },
     Initial:{
       screen: InitialScreen
+    },
+    SignUp :{
+      screen : SignUpScreen
     }
 });
 
