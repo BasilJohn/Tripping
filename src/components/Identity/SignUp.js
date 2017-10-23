@@ -1,15 +1,23 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity,Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity,Image,KeyboardAvoidingView } from 'react-native';
 import IdentityBlock from './IdentityBlock';
 import ProfileHeader from './ProfileHeader';
 import ProfileDetail from './ProfileDetail';
 import Button from '../common/Button';
+import firebase from 'firebase';
 
 export default class SignUp extends React.Component {
+
     state = { email: '' ,password : ''}
+    onPressButton ()  {
+        console.log('createProfile')
+       // firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password);
+    }
+   
     render(props){
         return (
-           <ScrollView style={{ flex:1 }}>
+              <ScrollView >
+              <KeyboardAvoidingView behavior="position" style={styles.form}>
                <IdentityBlock>
                    <ProfileHeader>
                    <TouchableOpacity style={styles.buttonStyle}>
@@ -20,9 +28,11 @@ export default class SignUp extends React.Component {
                    </TouchableOpacity>
                    </ProfileHeader>
                    <ProfileDetail /> 
-                   <Button onPress={()=>console.log('Create Profile')} buttonText={'Create Profile'}/>  
-               </IdentityBlock>    
-           </ScrollView>    
+                   <Button onPress={this.onPressButton.bind(this)} buttonText={'Create Profile'}/>  
+               </IdentityBlock>
+              </KeyboardAvoidingView>
+               </ScrollView>    
+
         );
     }
 }
@@ -44,6 +54,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 80,
         height: undefined
-     }
+     },
+     form: {
+        flex: 2,
+        justifyContent: 'space-between',
+      },
    
    });

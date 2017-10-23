@@ -7,16 +7,16 @@ export default class ProfileDetail extends React.Component{
     return (
        <View style={styles.parentStyle}>
        <View style={styles.childStyle}>    
-        <Input inputText={'EMAIL'} />
+        <Input placeholder={'user@gmail.com'} inputText={'EMAIL'} />
         </View>
         <View style={styles.childStyle} >    
-        <Input inputText={'PASSWORD'} />
+        <Input placeholder={'Password'} inputText={'PASSWORD'} />
         </View>
         <View style={styles.childStyle} >    
-        <Input inputText={'USERNAME'} />
+        <Input placeholder={'Username'} inputText={'USERNAME'} />
         </View>
         <View style={styles.childStyle} >    
-        <Input inputText={'FULLNAME'} />
+        <Input secureTextEntry={true} placeholder={'Fullname'} inputText={'FULLNAME'} />
         </View>
       </View>
     );

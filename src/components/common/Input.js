@@ -6,9 +6,10 @@ const Input = (props) => {
         <View style={styles.parentStyle}>
         <View style={styles.childStyle}>  
              <Text >{props.inputText}</Text>
-        </View>  
+        </View>
+          
         <View style={styles.childStyle}>  
-            <TextInput ></TextInput>
+            <TextInput secureTextEntry={props.secureTextEntry} placeholder={props.placeholder} ></TextInput>
         </View>
         </View>    
     );
@@ -16,7 +17,7 @@ const Input = (props) => {
 
 const styles = StyleSheet.create({
     parentStyle: {
-       flex: 1,
+      
        flexDirection: 'row',
        justifyContent: 'flex-start',
        flex:1
