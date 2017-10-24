@@ -9,7 +9,11 @@ const Input = (props) => {
         </View>
           
         <View style={styles.childStyle}>  
-            <TextInput secureTextEntry={props.secureTextEntry} placeholder={props.placeholder} ></TextInput>
+            <TextInput 
+            secureTextEntry={props.secureTextEntry} 
+            placeholder={props.placeholder}
+            value={props.value}
+            onChangeText={props.onChangeText} ></TextInput>
         </View>
         </View>    
     );
