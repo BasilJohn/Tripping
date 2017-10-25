@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '../common/Button';
+import Block from '../common/Block';
+import BlockDetail from '../common/BlockDetail';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -13,12 +15,13 @@ import { StackNavigator } from 'react-navigation';
    render(props) {
     const { navigate } = this.props.navigation;
     return (
+      
        <View style={styles.parentStyle}>
        <View style={styles.childStyle}>    
         <Button onPress={() => this.props.navigation.navigate('SignUp')}  buttonText={'Sign Up'} />
         </View>
         <View style={styles.childStyle} >    
-        <Button buttonText={'Login'} />
+        <Button onPress={() => this.props.navigation.navigate('Login')}  buttonText={'Login'} />
         </View>
       </View>
     );

@@ -1,12 +1,12 @@
 import React  from 'react';
 import { Text,StyleSheet, Image, ScrollView }  from 'react-native';
 import Button from './common/Button';
-import Intro from './opening/Block';
-import IntroBlock from  './opening/BlockDetail';
+import Intro from './common/Block';
+import IntroBlock from  './common/BlockDetail';
 import { StackNavigator } from 'react-navigation';
 import InitialScreen from './Identity/Initial';
 import SignUpScreen from './Identity/SignUp';
-
+import LoginScreen from './Identity/Login';
 
   class Opening extends React.Component{
 
@@ -57,6 +57,9 @@ const Stacks = StackNavigator({
     },
     SignUp :{
       screen : SignUpScreen
+    },
+    Login :{
+      screen : LoginScreen
     }
 });
 
