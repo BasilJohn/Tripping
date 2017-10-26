@@ -1,10 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
-import Button from '../common/Button';
-import Input from '../common/Input';
-import Spinner from '../common/Spinner';
-import Block from '../common/Block';
-import BlockDetail from '../common/BlockDetail';
+import {  Block, BlockDetail, Button, Input, Spinner } from '../common';
 import firebase from 'firebase';
 
 export default class SignUp extends React.Component {
@@ -13,7 +9,8 @@ export default class SignUp extends React.Component {
 
     static navigationOptions = {
         title: 'Sign Up',
-
+        headerTintColor: 'black',
+        headerTitleStyle: { color: 'black' }
     };
 
     onPressButton() {
@@ -54,8 +51,8 @@ export default class SignUp extends React.Component {
     render(props) {
 
         return (
-            <ScrollView >
-                <KeyboardAvoidingView behavior="position" style={styles.form}>
+            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+                <KeyboardAvoidingView behavior="position">
                     <Block>
                         <BlockDetail>
                             <TouchableOpacity style={styles.buttonStyle}>
@@ -66,81 +63,62 @@ export default class SignUp extends React.Component {
                             </TouchableOpacity>
                         </BlockDetail>
                         <BlockDetail>
-                            <View style={styles.parentStyle}>
-                                <View style={styles.childStyle}>
-                                    <Input
-                                        placeholder={'user@gmail.com'}
-                                        inputText={'Email'}
-                                        value={this.state.email}
-                                        onChangeText={text => this.setState({ email: text })} />
-                                </View>
-                                <View style={styles.childStyle} >
-                                    <Input
-                                        secureTextEntry
-                                        placeholder={'Password'}
-                                        inputText={'Password'}
-                                        value={this.state.password}
-                                        onChangeText={text => this.setState({ password: text })} />
-                                </View>
-                                <View style={styles.childStyle} >
-                                    <Input
-                                        placeholder={'Username'}
-                                        inputText={'Username'} />
-                                </View>
-                                <View style={styles.childStyle} >
-                                    <Input
-                                        placeholder={'Fullname'}
-                                        inputText={'Fullname'} />
-                                </View>
-                                <Text style={styles.errorTextStyle}>
-                                    {this.state.error}
-                                </Text>
-                                <View style={styles.childStyle} >
-                                    {this.renderButton()}
-                                </View>
+                            <Input
+                                placeholder={'user@gmail.com'}
+                                inputText={'Email'}
+                                value={this.state.email}
+                                onChangeText={text => this.setState({ email: text })} />
+                            <Input
+                                secureTextEntry
+                                placeholder={'Password'}
+                                inputText={'Password'}
+                                value={this.state.password}
+                                onChangeText={text => this.setState({ password: text })} />
+                            <Input
+                                placeholder={'Username'}
+                                inputText={'Username'} />
+                            <Input
+                                placeholder={'Fullname'}
+                                inputText={'Fullname'} />
+                            <Text style={styles.errorTextStyle}>
+                                {this.state.error}
+                            </Text>
+                            <View >
+                                {this.renderButton()}
                             </View>
+
                         </BlockDetail>
                     </Block>
                 </KeyboardAvoidingView>
             </ScrollView>
-
         );
     }
 }
 
 const styles = StyleSheet.create({
-
+    contentContainerStyle: {
+        flexGrow: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+    },
     buttonStyle: {
         borderColor: '#ddd',
         borderBottomWidth: 0,
-        backgroundColor: '#fff',
+        backgroundColor: '#9b9b9d',
         height: 160,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
+
     },
     introImageStyle: {
         flex: 1,
         alignSelf: 'center',
         width: 80,
-        height: undefined
+        height: undefined,
+        backgroundColor: '#9b9b9d'
     },
     form: {
         flex: 2,
         justifyContent: 'space-between',
-    },
-    parentStyle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    childStyle: {
-        alignSelf: 'stretch',
-        paddingTop: 5,
-        borderColor: '#ddd',
-        borderBottomWidth: 1,
     },
     errorTextStyle: {
         color: 'red',

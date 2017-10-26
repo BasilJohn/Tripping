@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const IntroBlock = (props) => {
+const BlockDetail = (props) => {
     return (
         <View style={styles.containerStyle}>
             {props.children}
@@ -12,16 +12,13 @@ const IntroBlock = (props) => {
 const styles = StyleSheet.create({
 
     containerStyle: {
-        borderColor: '#ddd',
+        borderColor: '#9b9b9d',
         borderBottomWidth: 1,
-        padding: 5,
-        backgroundColor: '#fff',
-        justifyContent: 'flex-start',
-        flexDirection: 'column',
-        position: 'relative',
+        paddingTop:5,
+        paddingBottom:5,
 
     }
 
 });
 
-export default IntroBlock;
+export { BlockDetail };

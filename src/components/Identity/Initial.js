@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from '../common/Button';
-import Block from '../common/Block';
-import BlockDetail from '../common/BlockDetail';
+import { Button, Block, BlockDetail } from '../common';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -9,7 +7,8 @@ import { StackNavigator } from 'react-navigation';
 export default class Initial extends React.Component {
   static navigationOptions = {
     title: 'Setup',
-
+    headerTintColor: 'black',
+    headerTitleStyle: { color: 'black' }
   };
 
   render(props) {

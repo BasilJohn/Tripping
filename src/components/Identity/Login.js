@@ -1,10 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
-import Input from '../common/Input';
-import Button from '../common/Button';
-import Spinner from '../common/Spinner';
-import Block from '../common/Block';
-import BlockDetail from '../common/BlockDetail';
+import { Button, Input, Spinner, Block, BlockDetail } from '../common';
 import IntialSetup from '../Initial/InitialSetup';
 import firebase from 'firebase';
 
@@ -15,7 +11,9 @@ export default class Login extends React.Component {
   state = { email: '', password: '', error: '', loading: false, loggedIn: false };
 
   static navigationOptions = {
-    title: 'Sign Up',
+    title: 'Login',
+    headerTintColor: 'black',
+    headerTitleStyle: { color: 'black' }
   };
   //componentWillMount () {
   //firebase.auth().onAuthStateChanged((user) => {
@@ -69,37 +67,30 @@ export default class Login extends React.Component {
       case true:
         return <IntialSetup />;
       case false:
-        return (<ScrollView>
-          <KeyboardAvoidingView behavior="position" style={styles.form}>
+        return (
+          <KeyboardAvoidingView behavior="position" >
             <Block>
               <BlockDetail>
-                <View style={styles.parentStyle}>
-                  <View style={styles.childStyle}>
-                    <Input
-                      placeholder={'user@gmail.com'}
-                      inputText={'Email'}
-                      value={this.state.email}
-                      onChangeText={text => this.setState({ email: text })} />
-                  </View>
-                  <View style={styles.childStyle} >
-                    <Input
-                      secureTextEntry
-                      placeholder={'Password'}
-                      inputText={'Password'}
-                      value={this.state.password}
-                      onChangeText={text => this.setState({ password: text })} />
-                  </View>
-                  <Text style={styles.errorTextStyle}>
-                    {this.state.error}
-                  </Text>
-                  <View style={styles.childStyle} >
-                    {this.renderButton()}
-                  </View>
+                <Input
+                  placeholder={'user@gmail.com'}
+                  inputText={'Email'}
+                  value={this.state.email}
+                  onChangeText={text => this.setState({ email: text })} />
+                <Input
+                  secureTextEntry
+                  placeholder={'Password'}
+                  inputText={'Password'}
+                  value={this.state.password}
+                  onChangeText={text => this.setState({ password: text })} />
+                <Text style={styles.errorTextStyle}>
+                  {this.state.error}
+                </Text>
+                <View >
+                  {this.renderButton()}
                 </View>
               </BlockDetail>
             </Block>
-          </KeyboardAvoidingView>
-        </ScrollView>);
+              </KeyboardAvoidingView>);
       default:
         return (<Spinner />);
     }
@@ -107,7 +98,7 @@ export default class Login extends React.Component {
 
   render(props) {
     return (
-      <ScrollView >
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         {this.renderContent()}
       </ScrollView>
     );
@@ -116,23 +107,16 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
 
-  parentStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  childStyle: {
-    alignSelf: 'stretch',
-    paddingTop: 5,
-    borderColor: '#ddd',
-    borderBottomWidth: 1,
-    height: 50
-  },
   errorTextStyle: {
     color: 'red',
     alignSelf: 'center',
     fontSize: 20,
-  }
+  },
+  contentContainerStyle:{
+    flexGrow: 1, 
+    flexDirection: 'column', 
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+},
 
 });

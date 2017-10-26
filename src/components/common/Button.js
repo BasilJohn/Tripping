@@ -16,17 +16,15 @@ const styles = StyleSheet.create({
     buttonStyle: {
 
         alignSelf: 'stretch',
-        backgroundColor: '#fff',
+        backgroundColor: '#9b9b9d',
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: '#007aff',
-        marginLeft: 5,
-        marginRight: 5
+        borderColor: '#000'
 
     },
     textStyle: {
         alignSelf: 'center',
-        color: '#007aff',
+        color: '#000',
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,
@@ -36,4 +34,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Button;
+ export { Button };

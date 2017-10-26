@@ -34,10 +34,12 @@ const styles = StyleSheet.create({
         height: 40,
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderColor: '#9b9b9d',
+        borderBottomWidth: 1
     }
 });
 
 
 
-export default Input;
+export { Input };

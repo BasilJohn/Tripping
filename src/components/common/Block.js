@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-const Intro = (props) => {
+const Block = (props) => {
     return (
         <View style={styles.containerStyle}>
             {props.children}
@@ -12,15 +12,10 @@ const Intro = (props) => {
 const styles = StyleSheet.create({
 
     containerStyle: {
-        borderWidth: 1,
+        borderWidth: 0,
         borderRadius: 2,
-        borderColor: '#ddd',
+        borderColor: '#9b9b9d',
         borderBottomWidth: 0,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
         marginLeft: 2,
         marginRight: 2,
         flex: 1
@@ -28,4 +23,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Intro;
+export { Block };
