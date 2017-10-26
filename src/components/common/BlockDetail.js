@@ -1,27 +1,27 @@
 import React from 'react';
-import { View,StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-const IntroBlock = (props) =>{
-    return(
+const IntroBlock = (props) => {
+    return (
         <View style={styles.containerStyle}>
-          {props.children}
+            {props.children}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    
-     containerStyle: {
+
+    containerStyle: {
         borderColor: '#ddd',
-        borderBottomWidth:1,
-        padding :5,
+        borderBottomWidth: 1,
+        padding: 5,
         backgroundColor: '#fff',
         justifyContent: 'flex-start',
         flexDirection: 'column',
         position: 'relative',
 
-     }
-   
-   });
+    }
+
+});
 
 export default IntroBlock;

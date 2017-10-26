@@ -4,14 +4,14 @@ import { View, StyleSheet, Text } from 'react-native';
 const Intro = (props) => {
     return (
         <View style={styles.containerStyle}>
-         {props.children}
-        </View>        
+            {props.children}
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    
-     containerStyle: {
+
+    containerStyle: {
         borderWidth: 1,
         borderRadius: 2,
         borderColor: '#ddd',
@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 1,
-        marginLeft:2,
-        marginRight:2,
-        flex:1
-     }
-   
-   });
+        marginLeft: 2,
+        marginRight: 2,
+        flex: 1
+    }
+
+});
 
 export default Intro;

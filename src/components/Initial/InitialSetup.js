@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const InitialSetup = () => {
-    return(
+    return (
         <View>
-         <Text>InitialSetup</Text>
+            <Text>InitialSetup</Text>
         </View>
     );
 }
