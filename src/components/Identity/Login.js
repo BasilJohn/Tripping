@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button, Input, Spinner, Block, BlockDetail } from '../common';
-import IntialSetup from '../Initial/InitialSetup';
+import IntialSetup from '../Initial/MainFeed';
 import firebase from 'firebase';
 
 
@@ -15,23 +15,21 @@ export default class Login extends React.Component {
     headerTintColor: 'black',
     headerTitleStyle: { color: 'black' }
   };
-  //componentWillMount () {
-  //firebase.auth().onAuthStateChanged((user) => {
-  //if (user) {
-  //console.log(user.email);
-  //this.setState({ loggedIn: true });
-  //} else {
-  //console.log('false');
-  //this.setState({ loggedIn: false });
-  //}
-  //});
-  //}
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  }
 
   onLoginButtonPress() {
 
     const { email, password } = this.state;
     this.setState({ error: '', loading: true });
-    console.log(email, password);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
@@ -44,7 +42,7 @@ export default class Login extends React.Component {
       error: '',
       loggedIn: true
     });
-    console.log(this.state.loggedIn);
+
   }
   onLoginFail() {
     this.setState({
@@ -52,7 +50,7 @@ export default class Login extends React.Component {
       error: 'Authentication Failed',
       loggedIn: false
     });
-    console.log(this.state.loggedIn);
+
   }
   renderButton() {
     if (this.state.loading) {
@@ -90,7 +88,7 @@ export default class Login extends React.Component {
                 </View>
               </BlockDetail>
             </Block>
-              </KeyboardAvoidingView>);
+          </KeyboardAvoidingView>);
       default:
         return (<Spinner />);
     }
@@ -112,11 +110,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
   },
-  contentContainerStyle:{
-    flexGrow: 1, 
-    flexDirection: 'column', 
+  contentContainerStyle: {
+    flexGrow: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#fff',
-},
+  },
 
 });
