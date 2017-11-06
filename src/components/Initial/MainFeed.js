@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { Footer } from '../common';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { Footer, Button } from '../common';
 
 export default class SignUp extends React.Component {
 
@@ -11,11 +11,24 @@ export default class SignUp extends React.Component {
     };
 
     render(props) {
+
         return (
-            <View>
-                <Footer />
+            <View style={styles.containerStyle}>
+                <Text>Main</Text>
+                <View>
+                    <Footer />
+                </View>
             </View>
         );
     }
 }
 
+const styles = StyleSheet.create({
+    containerStyle: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+
+    }
+
+});

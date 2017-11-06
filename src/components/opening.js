@@ -40,7 +40,7 @@ class Opening extends React.Component {
             </Text>
             </BlockDetail>
             <BlockDetail>
-              <Button onPress={() => this.props.navigation.navigate('Initial')} buttonText={' Started'} />
+              <Button onPress={() => this.props.navigation.navigate('Initial')} buttonText={'Get Started'} />
             </BlockDetail>
           </Block>
         </KeyboardAvoidingView>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button, Input, Spinner, Block, BlockDetail } from '../common';
-import IntialSetup from '../Initial/MainFeed';
+import MainFeed from '../Initial/MainFeed';
 import firebase from 'firebase';
 
 
@@ -63,7 +63,7 @@ export default class Login extends React.Component {
 
     switch (this.state.loggedIn) {
       case true:
-        return <IntialSetup />;
+        return <MainFeed />;
       case false:
         return (
           <KeyboardAvoidingView behavior="position" >
