@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from './Button';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const Footer = (props) => {
@@ -12,7 +11,7 @@ const Footer = (props) => {
                 <Text style={styles.textStyle}>{'Near You'}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonStyle}>
-                <Text style={styles.textStyle}>{'Around'}</Text>
+                <Text style={styles.textStyle}>{'Intl'}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -23,22 +22,19 @@ const styles = StyleSheet.create({
     containerStyle: {
         flex: 1,
         flexDirection: 'row',
+        paddingBottom: 1,
+        backgroundColor: '#2D4262',
         justifyContent: 'space-between'
     },
     buttonStyle: {
-        width: 110,
+        width: 100,
         height: 50,
-        alignSelf: 'stretch',
-        backgroundColor: '#9b9b9d',
-        borderWidth: 1,
-        borderColor: '#000'
+        paddingTop: 10
     },
     textStyle: {
-        alignSelf: 'center',
-        color: '#000',
+        color: '#FFFFFF',
         fontSize: 16,
-        fontWeight: '600',
-        paddingBottom: 10
+        textAlign: 'center'
     }
 });
 

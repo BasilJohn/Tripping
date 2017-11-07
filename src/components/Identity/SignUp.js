@@ -9,8 +9,8 @@ export default class SignUp extends React.Component {
 
     static navigationOptions = {
         title: 'Sign Up',
-        headerTintColor: 'black',
-        headerTitleStyle: { color: 'black' }
+        headerTintColor: '#F1F1F2',
+        headerTitleStyle: { color: '#F1F1F2' }
     };
 
     onPressButton() {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#F1F1F2',
     },
     buttonStyle: {
         borderColor: '#ddd',

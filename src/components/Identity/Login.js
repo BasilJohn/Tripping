@@ -12,8 +12,8 @@ export default class Login extends React.Component {
 
   static navigationOptions = {
     title: 'Login',
-    headerTintColor: 'black',
-    headerTitleStyle: { color: 'black' }
+    headerTintColor: '#F1F1F2',
+    headerTitleStyle: { color: '#F1F1F2' }
   };
 
   componentDidMount() {

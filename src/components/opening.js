@@ -10,8 +10,8 @@ class Opening extends React.Component {
 
   static navigationOptions = {
     title: 'Welcome',
-    headerTintColor: 'black',
-    headerTitleStyle: { color: 'black' }
+    headerTintColor: '#F1F1F2',
+    headerTitleStyle: { color: '#F1F1F2' }
   };
 
   render(props) {
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
 
   },
   stackStyle: {
-    backgroundColor: '#9b9b9d'
+    backgroundColor: '#2D4262'
 
   },
   contentContainerStyle: {
     flexGrow: 1,
-    justifyContent: 'center',
-    backgroundColor: '#0076A6'
+    justifyContent: 'flex-start',
+    backgroundColor: '#F1F1F2'
   }
 
 });

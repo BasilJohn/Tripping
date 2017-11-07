@@ -7,8 +7,8 @@ import { StackNavigator } from 'react-navigation';
 export default class Initial extends React.Component {
   static navigationOptions = {
     title: 'Setup',
-    headerTintColor: 'black',
-    headerTitleStyle: { color: 'black' }
+    headerTintColor: '#F1F1F2',
+    headerTitleStyle: { color: '#F1F1F2' }
   };
 
   render(props) {
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F1F1F2'
   },
   childStyle: {
     alignSelf: 'stretch',

@@ -6,15 +6,17 @@ export default class SignUp extends React.Component {
 
     static navigationOptions = {
         title: 'Main Feed',
-        headerTintColor: 'black',
-        headerTitleStyle: { color: 'black' }
+        headerTintColor: '#F1F1F2',
+        headerTitleStyle: { color: '#F1F1F2' }
     };
 
     render(props) {
 
         return (
             <View style={styles.containerStyle}>
-                <Text>Main</Text>
+                <View style={styles.contentStyle}>
+                    <Text>Main</Text>
+                </View>
                 <View>
                     <Footer />
                 </View>
@@ -28,7 +30,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
+        backgroundColor: '#F1F1F2'
 
+    },
+    contentStyle: {
+        flex: 1
     }
 
 });
