@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Footer, Button } from '../common';
 
 export default class SignUp extends React.Component {
 
     static navigationOptions = {
         title: 'Main Feed',
+        headerRight:<Text>{'Near You'}</Text>,
         headerTintColor: '#F1F1F2',
         headerTitleStyle: { color: '#F1F1F2' }
+    
     };
 
     render(props) {

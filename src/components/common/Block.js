@@ -12,11 +12,6 @@ const Block = (props) => {
 const styles = StyleSheet.create({
 
     containerStyle: {
-        borderWidth: 0,
-        borderRadius: 2,
-        borderColor: '#000',
-        marginLeft: 0,
-        marginRight: 0,
         flex: 1
     }
 

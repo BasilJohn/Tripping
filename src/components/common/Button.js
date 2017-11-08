@@ -16,15 +16,14 @@ const styles = StyleSheet.create({
     buttonStyle: {
 
         alignSelf: 'stretch',
-        backgroundColor: '#9b9b9d',
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#000'
+        backgroundColor: '#2D4262',
+        height:50
 
     },
     textStyle: {
         alignSelf: 'center',
-        color: '#000',
+        textAlign:'center',
+        color: '#F1F1F2',
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,

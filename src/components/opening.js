@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { Text, StyleSheet, Image, ScrollView, View } from 'react-native';
 import { Button, Block, BlockDetail } from './common';
 import { StackNavigator } from 'react-navigation';
 import InitialScreen from './Identity/Initial';
@@ -20,30 +20,30 @@ class Opening extends React.Component {
 
     return (
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        <KeyboardAvoidingView behavior="position">
-          <Block>
-            <BlockDetail>
-              <Image style={styles.introImageStyle} source={require('../images/IntroImage.jpg')} />
-            </BlockDetail>
-            <BlockDetail>
-              <Text >Hey,{"\n"}
-                {"\n"}
-                Welcome to Tripping,here's what you can do using Tripping.{"\n"}
-                {"\n"}
-                1)Create your own Trip Group,add friends participating in the Trip and share all information.{"\n"}
-                {"\n"}
-                2)Track expense from all members of your Trip and be on track with finances.{"\n"}
-                {"\n"}
-                3)You can locate all members of your Trip group individually using our Tracker.{"\n"}
-                {"\n"}
-                4)Discover other groups Tripping.
+        <View>
+          <BlockDetail>
+            <Image style={styles.introImageStyle} source={require('../images/IntroImage.jpg')} />
+          </BlockDetail>
+          <BlockDetail>
+            <Text >Hey,{"\n"}
+              {"\n"}
+              Welcome to Tripping,here's what you can do using Tripping.{"\n"}
+              {"\n"}
+              1)Create your own Trip Group,add friends participating in the Trip and share all information.{"\n"}
+              {"\n"}
+              2)Track expense from all members of your Trip and be on track with finances.{"\n"}
+              {"\n"}
+              3)You can locate all members of your Trip group individually using our Tracker.{"\n"}
+              {"\n"}
+              4)Discover other groups Tripping.
             </Text>
-            </BlockDetail>
-            <BlockDetail>
-              <Button onPress={() => this.props.navigation.navigate('Initial')} buttonText={'Get Started'} />
-            </BlockDetail>
-          </Block>
-        </KeyboardAvoidingView>
+          </BlockDetail>
+        </View>
+        <View>
+          <BlockDetail>
+            <Button onPress={() => this.props.navigation.navigate('Initial')} buttonText={'Get Started'} />
+          </BlockDetail>
+        </View>
       </ScrollView>
     );
   }
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     flexGrow: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     backgroundColor: '#F1F1F2'
   }
 

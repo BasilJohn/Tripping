@@ -12,10 +12,7 @@ const BlockDetail = (props) => {
 const styles = StyleSheet.create({
 
     containerStyle: {
-        borderColor: '#9b9b9d',
-        borderBottomWidth: 1,
-        paddingBottom:5,
-
+        borderColor: '#9b9b9d'
     }
 
 });
