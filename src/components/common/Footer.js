@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     textStyle: {
         color: '#FFFFFF',
         fontSize: 16,
+        fontWeight: '600',
         textAlign: 'center'
     },
     footerImageStyle: {
