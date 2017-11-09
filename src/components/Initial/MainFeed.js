@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Footer, Button } from '../common';
+import YouFeed from '../Trip/YouFeed';
+import NearYouFeed from '../Trip/NearYouFeed';
+import WorldFeed from '../Trip/WorldFeed';
 
 export default class SignUp extends React.Component {
+
     state = { screenToShow: '' };
     static navigationOptions = {
         title: 'Main Feed',
@@ -12,30 +16,27 @@ export default class SignUp extends React.Component {
     };
 
     updateScreenToShow = (text) => {
-
         this.setState({
             screenToShow: ''
         });
         this.setState({
             screenToShow: text
         });
-
     }
     renderChildView() {
         switch (this.state.screenToShow) {
             case 'You':
-                return (<Text>{'You'}</Text>);
+                return (<YouFeed />);
             case 'NearYou':
-                return (<Text>{'NearYou'}</Text>);
+                return (<NearYouFeed />);
             case 'World':
-                return (<Text>{'World'}</Text>);
+                return (<WorldFeed />);
             default:
-                return (<Text>{'You'}</Text>);
+                return (<YouFeed />);
         }
     }
 
     render(props) {
-
         return (
             <View style={styles.containerStyle}>
                 <View style={styles.contentStyle}>
@@ -60,5 +61,4 @@ const styles = StyleSheet.create({
     contentStyle: {
         flex: 1
     }
-
 });
