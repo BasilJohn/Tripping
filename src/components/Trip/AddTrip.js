@@ -15,6 +15,9 @@ export default class AddTrip extends React.Component {
         return (
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
+                    <View style={styles.HeaderTextStyle}>
+                        <Text style={styles.labelStyle}>{'Add your Trip details here'}</Text>
+                    </View>
                     <BlockDetail>
                         <Input
                             inputText={'From'}
@@ -64,8 +67,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#F1F1F2',
     },
     labelStyle: {
-        fontSize: 18,
+        fontSize: 20,
         flex: 1,
-        textAlign: 'center'
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#2D4262'
     },
+    HeaderTextStyle: {
+
+        padding: 10,
+        paddingBottom: 100
+
+    }
 });
