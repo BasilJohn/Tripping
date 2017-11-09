@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
-import { Button, Input, Spinner, Block, BlockDetail } from '../common';
+import { Button, Input, Spinner, Block, BlockDetail, NavigationLink } from '../common';
 import MainFeed from '../Initial/MainFeed';
 import firebase from 'firebase';
 
@@ -10,12 +10,17 @@ export default class Login extends React.Component {
 
   state = { email: '', password: '', error: '', loading: false, loggedIn: false };
 
-  static navigationOptions = {
+  onAddTripButtonPress() {
+    console.log('Add New Trip')
+  }
+
+  static navigationOptions = ({ navigation }) => ({
     title: 'Login',
     headerTintColor: '#F1F1F2',
     headerTitleStyle: { color: '#F1F1F2' },
-    headerRight:<Text>Add Trip</Text>
-  };
+    headerRight: <NavigationLink linkText={'Add Trip'} onPress={() => navigation.navigate('AddTrip')} />
+  });
+
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {

@@ -6,7 +6,6 @@ export default class SignUp extends React.Component {
 
     static navigationOptions = {
         title: 'Main Feed',
-        headerRight:<Text>{'Near You'}</Text>,
         headerTintColor: '#F1F1F2',
         headerTitleStyle: { color: '#F1F1F2' }
     
