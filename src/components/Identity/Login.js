@@ -10,34 +10,37 @@ export default class Login extends React.Component {
 
   state = { email: '', password: '', error: '', loading: false, loggedIn: false };
 
-  
-  static navigationOptions = ({navigation}) => {
-    const {params = {}} = navigation.state;
+
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
     return {
       title: 'Login',
       headerTintColor: '#F1F1F2',
       headerTitleStyle: { color: '#F1F1F2' },
-      headerRight: <NavigationLink linkText={params.showAddTrip ? 'Add Trip' : ''} onPress={() => navigation.navigate('AddTrip')} />
+      headerRight: <NavigationLink linkText={params.showAddTrip == '1' ? 'Add Trip' : ''} onPress={() => navigation.navigate('AddTrip')} />
 
     };
-};
+  };
 
-  
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
+        this.props.navigation.setParams({
+          showAddTrip: '1',
+        });
       } else {
         this.setState({ loggedIn: false });
+        this.props.navigation.setParams({
+          showAddTrip: '0',
+        });
       }
-      this.props.navigation.setParams({
-         showAddTrip: true
-      });
-    
-      console.log(this.props.navigation.state.showAddTrip)
+
+
     });
 
-   
+
   }
 
   onLoginButtonPress() {
