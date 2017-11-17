@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native';
-import { Input, Button, BlockDetail } from '../common';
+import { Input, Button, BlockDetail, ImageInput } from '../common';
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
 export default class AddTrip extends React.Component {
 
@@ -19,33 +19,15 @@ export default class AddTrip extends React.Component {
                         <Text style={styles.labelStyle}>{'Add your Trip details here'}</Text>
                     </View>
                     <BlockDetail>
-                        <Input
-                            inputText={'From'}
+                        <ImageInput
+                            imagesrc={'start'}
                             placeholder={'Trip start place'}
                         />
                     </BlockDetail>
                     <BlockDetail>
-                        <Input
-                            inputText={'In'}
-                            placeholder={'Select Country'}
-                        />
-                    </BlockDetail>
-                    <BlockDetail>
-                        <Input
-                            inputText={'To'}
+                        <ImageInput
+                            imagesrc={'end'}
                             placeholder={'Trip end place'}
-                        />
-                    </BlockDetail>
-                    <BlockDetail>
-                        <Input
-                            inputText={'In'}
-                            placeholder={'Select Country'}
-                        />
-                    </BlockDetail>
-                    <BlockDetail>
-                        <Input
-                            inputText={'Trip Name'}
-                            placeholder={'Your trip name'}
                         />
                     </BlockDetail>
                 </KeyboardAvoidingView>
