@@ -5,6 +5,6 @@ export * from './Input';
 export * from './Spinner';
 export * from './Footer';
 export * from './NavigationLink';
-export * from './ImageInput';
-
+export * from './PlacesInput';
+export * from './GooglePlacesInput';
 

@@ -1,25 +1,18 @@
 import React from 'react';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
-
+import { GooglePlacesInput } from './GooglePlacesInput';
 
 const IMAGES = {
     start: require('./Images/GooglePlaces.png'),
     end: require('./Images/redtarget.png')
 }
 
-export default class ImageInput extends React.Component {
+export default class PlacesInput extends React.Component {
     render(props) {
         return (
             <View style={styles.containerStyle}>
-                <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} />
-                <TextInput
-                    secureTextEntry={this.props.secureTextEntry}
-                    autoCorrect={false}
-                    placeholder={this.props.placeholder}
-                    value={this.props.value}
-                    onChangeText={this.props.onChangeText}
-                    style={styles.inputStyle}
-                />
+                {/* <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} /> */}
+                <GooglePlacesInput placeholder={this.props.placeholder}/>
             </View>
         );
     }
@@ -48,11 +41,12 @@ const styles = StyleSheet.create({
         height: 100,
         flex: 1,
         width: 50,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        backgroundColor: '#F1F1F2'
     }
 
 });
 
 
 
-export { ImageInput };
+export { PlacesInput };
