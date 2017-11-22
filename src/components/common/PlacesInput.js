@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TextInput, StyleSheet } from 'react-native';
+import { View, Image, TextInput, StyleSheet, TouchableOpacity, Modal, Text, TouchableHighlight } from 'react-native';
 import { GooglePlacesInput } from './GooglePlacesInput';
 
 const IMAGES = {
@@ -8,11 +8,38 @@ const IMAGES = {
 }
 
 export default class PlacesInput extends React.Component {
+
+    state = {
+        modalVisible: false,
+    }
+    toggleModal(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
     render(props) {
         return (
             <View style={styles.containerStyle}>
-                {/* <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} /> */}
-                <GooglePlacesInput placeholder={this.props.placeholder}/>
+                <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} />
+                <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true) }}>
+                    <TextInput
+                        secureTextEntry={this.props.secureTextEntry}
+                        autoCorrect={false}
+                        placeholder={this.props.placeholder}
+                        value={this.props.value}
+                        onChangeText={this.props.onChangeText}
+                        pointerEvents="none"
+                    />
+                </TouchableOpacity>
+                <Modal animationType={"slide"} transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { console.log('closed') }}>
+                    <View style={styles.modal}>
+                        <TouchableHighlight style={styles.closeStyle} onPress={() => { this.toggleModal(!this.state.modalVisible) }}>
+                            <Text style={styles.textStyle} >Close</Text>
+                        </TouchableHighlight>
+                        <GooglePlacesInput />
+                    </View>
+                </Modal>
             </View>
         );
     }
@@ -26,16 +53,19 @@ const styles = StyleSheet.create({
         paddingBottom: 1,
         justifyContent: 'space-between'
     },
-    inputStyle: {
-        color: '#000',
+    touchStyle: {
         paddingRight: 5,
         paddingLeft: 5,
-        fontSize: 18,
-        lineHeight: 23,
         paddingTop: 80,
         flex: 2,
         borderBottomWidth: 1,
         borderColor: '#000'
+    },
+    inputStyle: {
+
+        fontSize: 18,
+        lineHeight: 23
+
     },
     imageStyle: {
         height: 100,
@@ -43,6 +73,21 @@ const styles = StyleSheet.create({
         width: 50,
         alignSelf: 'center',
         backgroundColor: '#F1F1F2'
+    },
+    modal: {
+        flex: 1,
+        paddingTop: 40,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: '#2D4262'
+    },
+    closeStyle: {
+          alignItems: 'flex-end',
+          marginBottom:20
+    },
+    textStyle : {
+        color: '#F1F1F2',
+        fontSize: 20,
     }
 
 });

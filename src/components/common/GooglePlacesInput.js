@@ -31,8 +31,8 @@ const GooglePlacesInput = (props) => {
       styles={{
        textInputContainer: {
         backgroundColor: 'rgba(0,0,0,0)',
-        borderTopWidth: 0,
-        borderBottomWidth:0
+        alignSelf:'stretch'
+        
       },
       container : {
         flex:1
@@ -40,9 +40,15 @@ const GooglePlacesInput = (props) => {
       textInput: {
         marginLeft: 0,
         marginRight: 0,
+        marginTop: 0,
         height: 38,
         color: '#5d5d5d',
-        fontSize: 16
+        fontSize: 16,
+        borderWidth: 1,
+        borderRadius:0
+      },
+      listView : {
+        backgroundColor: '#F1F1F2'
       },
       predefinedPlacesDescription: {
         color: '#1faadb'
