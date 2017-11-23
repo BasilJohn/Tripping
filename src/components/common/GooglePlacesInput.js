@@ -5,7 +5,11 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
 
+
+
 const GooglePlacesInput = (props) => {
+
+
   return (
     <GooglePlacesAutocomplete
       placeholder='Enter Location'
@@ -16,7 +20,7 @@ const GooglePlacesInput = (props) => {
       fetchDetails={true}
       renderDescription={row => row.description} // custom description render
       onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        console.log(data, details);
+        props.setSelectedPlace(data.description);
       }}
       
       getDefaultValue={() => ''}
@@ -31,17 +35,20 @@ const GooglePlacesInput = (props) => {
       styles={{
        textInputContainer: {
         backgroundColor: 'rgba(0,0,0,0)',
-        alignSelf:'stretch'
+        alignSelf:'stretch',
+        borderTopWidth: 0,
+        borderBottomWidth:0
         
       },
       container : {
-        flex:1
+        flex:1,
+        backgroundColor: '#F1F1F2'
       },
       textInput: {
         marginLeft: 0,
         marginRight: 0,
         marginTop: 0,
-        height: 38,
+        height: 40,
         color: '#5d5d5d',
         fontSize: 16,
         borderWidth: 1,

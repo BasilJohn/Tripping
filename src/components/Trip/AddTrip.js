@@ -22,12 +22,14 @@ export default class AddTrip extends React.Component {
                         <PlacesInput
                             imagesrc={'start'}
                             placeholder={'Trip start place'}
+
                         />
                     </BlockDetail>
                     <BlockDetail>
                         <PlacesInput
                             imagesrc={'end'}
                             placeholder={'Trip end place'}
+
                         />
                     </BlockDetail>
                 </KeyboardAvoidingView>
