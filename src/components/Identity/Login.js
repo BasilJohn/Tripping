@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button, Input, Spinner, Block, BlockDetail, NavigationLink } from '../common';
+import { onEmailChanged, onPasswordChanged,onLoginUser } from '../../actions';
 import MainFeed from '../Initial/MainFeed';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 
 
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
-  state = { email: '', password: '', error: '', loading: false, loggedIn: false };
+  state = { loggedIn: false };
 
 
   static navigationOptions = ({ navigation }) => {
@@ -22,6 +24,12 @@ export default class Login extends React.Component {
     };
   };
 
+  onEmailChange(text) {
+    this.props.onEmailChanged(text);
+  }
+  onPasswordChange(text) {
+    this.props.onPasswordChanged(text);
+  }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -37,40 +45,17 @@ export default class Login extends React.Component {
         });
       }
 
-
     });
-
-
   }
 
   onLoginButtonPress() {
-
-    const { email, password } = this.state;
-    this.setState({ error: '', loading: true });
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(this.onLoginFail.bind(this));
+    const { email, password } = this.props;
+     this.props. onLoginUser( { email,password});  
   }
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: '',
-      loggedIn: true
-    });
+  
 
-  }
-  onLoginFail() {
-    this.setState({
-      loading: false,
-      error: 'Authentication Failed',
-      loggedIn: false
-    });
-
-  }
   renderButton() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return <Spinner />;
     }
     return (<Button onPress={this.onLoginButtonPress.bind(this)} buttonText={'Login'} />);
@@ -89,16 +74,16 @@ export default class Login extends React.Component {
                 <Input
                   placeholder={'user@gmail.com'}
                   inputText={'Email'}
-                  value={this.state.email}
-                  onChangeText={text => this.setState({ email: text })} />
+                  value={this.props.email}
+                  onChangeText={this.onEmailChange.bind(this)} />
                 <Input
                   secureTextEntry
                   placeholder={'Password'}
                   inputText={'Password'}
-                  value={this.state.password}
-                  onChangeText={text => this.setState({ password: text })} />
+                  value={this.props.password}
+                  onChangeText={this.onPasswordChange.bind(this)} />
                 <Text style={styles.errorTextStyle}>
-                  {this.state.error}
+                  {this.props.error}
                 </Text>
                 <View >
                   {this.renderButton()}
@@ -135,3 +120,16 @@ const styles = StyleSheet.create({
   },
 
 });
+
+const mapStateToProps = ({ auth }) => {
+  const { email ,password ,error, loading } = auth;
+  return {
+    email, password ,error ,loading
+  }
+}
+
+export default connect(mapStateToProps, 
+  { onEmailChanged,
+    onPasswordChanged,
+    onLoginUser
+   })(Login)

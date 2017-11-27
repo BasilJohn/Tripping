@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View,ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore ,applyMiddleware } from 'redux';
 import Opening from './src/components/opening';
+import reducers from './src/reducers';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 
 
 export default class App extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     var config = {
       apiKey: "AIzaSyCU7bSoXbTGGydNHBYHYkJKBRl3F-dkuAE",
       authDomain: "tripping-22ff3.firebaseapp.com",
@@ -18,9 +22,11 @@ export default class App extends React.Component {
     firebase.initializeApp(config);
   }
   render() {
+    const store=createStore(reducers,{},applyMiddleware(ReduxThunk));
     return (
-      
-      <Opening/>
+      <Provider store={store}>
+        <Opening />
+      </Provider>
     );
   }
 }
