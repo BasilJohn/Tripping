@@ -17,6 +17,9 @@ class AddTrip extends React.Component {
 
     addTrip() {
         this.props.onAddTrip(this.props.tripStartPlace, this.props.tripEndPlace)
+        // if(this.props.tripAdded){
+        //     this.props.navigation.navigate('MainFeed')
+        // }
     }
     render(props) {
         return (
@@ -72,11 +75,12 @@ const styles = StyleSheet.create({
 
 mapStateToProps = ({ trip }) => {
 
-    const { tripStartPlace, tripEndPlace, selectedPlace } = trip;
+    const { tripStartPlace, tripEndPlace, selectedPlace ,tripAdded } = trip;
     return {
         tripStartPlace,
         tripEndPlace,
-        selectedPlace
+        selectedPlace,
+        tripAdded
     }
 
 }

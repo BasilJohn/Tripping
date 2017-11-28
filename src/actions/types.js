@@ -6,3 +6,4 @@ export const LOGIN_USER_FAIL ='login_user_fail';
 export const ADD_TRIP ='add_trip';
 export const UPDATE_SELECTED_PLACE ='update_selected_place';
 export const SHOW_MODAL ='show_modal';
+export const SHOW_TRIP_LIST ='show_trip_list';

@@ -6,7 +6,8 @@ import {
     LOGIN_USER_FAIL,
     UPDATE_SELECTED_PLACE,
     SHOW_MODAL,
-    ADD_TRIP
+    ADD_TRIP,
+    SHOW_TRIP_LIST
 } from './types';
 import firebase from 'firebase';
 
@@ -43,12 +44,10 @@ const loginUserSuccess = (dispatch, user) => {
 }
 
 const loginUserFail = (dispatch) => {
-
     dispatch({ type: LOGIN_USER_FAIL });
 }
 
-export const updateSelectedPlace = (placeSelected, source ,sp,ep) => {
-
+export const updateSelectedPlace = (placeSelected, source, sp, ep) => {
     return {
         type: UPDATE_SELECTED_PLACE,
         tripStartPlace: source === 'start' ? placeSelected : sp,
@@ -63,9 +62,11 @@ export const showModal = (visible) => {
     }
 }
 
-export const onAddTrip = (tripStartPlace,tripEndPlace) => {
-    return {
-        type: ADD_TRIP,
-        payload: 'yes'
+export const onAddTrip = (tripStartPlace, tripEndPlace) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/Trip/${currentUser.uid}/Trips`)
+            .push({ tripStartPlace, tripEndPlace })
+            .then(() => { dispatch({ type: SHOW_TRIP_LIST, payload: true }) });
     }
 }
