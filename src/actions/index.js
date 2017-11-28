@@ -1,9 +1,13 @@
-import { EMAIL_CHANGED, 
-    PASSWORD_CHANGED, 
-    LOGIN_USER, 
-    LOGIN_USER_SUCESS, 
+import {
+    EMAIL_CHANGED,
+    PASSWORD_CHANGED,
+    LOGIN_USER,
+    LOGIN_USER_SUCESS,
     LOGIN_USER_FAIL,
-    SET_SELECTED_PLACE } from './types';
+    UPDATE_SELECTED_PLACE,
+    SHOW_MODAL,
+    ADD_TRIP
+} from './types';
 import firebase from 'firebase';
 
 export const onEmailChanged = (text) => {
@@ -23,10 +27,10 @@ export const onPasswordChanged = (text) => {
 export const onLoginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER });
-        firebase.auth().signInWithEmailAndPassword(email,password)
+        firebase.auth().signInWithEmailAndPassword(email, password)
             .then(user => loginUserSuccess(dispatch, user))
             .catch(() => {
-                firebase.auth().createUserWithEmailAndPassword(email,password)
+                firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then(user => loginUserSuccess(dispatch, user))
                     .catch(() => loginUserFail(dispatch))
             })
@@ -43,4 +47,25 @@ const loginUserFail = (dispatch) => {
     dispatch({ type: LOGIN_USER_FAIL });
 }
 
+export const updateSelectedPlace = (placeSelected, source ,sp,ep) => {
 
+    return {
+        type: UPDATE_SELECTED_PLACE,
+        tripStartPlace: source === 'start' ? placeSelected : sp,
+        tripEndPlace: source === 'end' ? placeSelected : ep,
+        source: source,
+    }
+}
+export const showModal = (visible) => {
+    return {
+        type: SHOW_MODAL,
+        payload: visible
+    }
+}
+
+export const onAddTrip = (tripStartPlace,tripEndPlace) => {
+    return {
+        type: ADD_TRIP,
+        payload: 'yes'
+    }
+}

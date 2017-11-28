@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native';
-import { Input, Button, BlockDetail, PlacesInput } from '../common';
+import { Input, Button, BlockDetail } from '../common';
+import PlacesInput from '../common/PlacesInput';
+import { updateSelectedPlace, onAddTrip } from '../../actions';
+import { connect } from 'react-redux';
+
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
-export default class AddTrip extends React.Component {
+class AddTrip extends React.Component {
 
     static navigationOptions = {
         title: 'Add Trip',
@@ -11,6 +15,9 @@ export default class AddTrip extends React.Component {
 
     };
 
+    addTrip() {
+        this.props.onAddTrip(this.props.tripStartPlace, this.props.tripEndPlace)
+    }
     render(props) {
         return (
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
@@ -22,19 +29,17 @@ export default class AddTrip extends React.Component {
                         <PlacesInput
                             imagesrc={'start'}
                             placeholder={'Trip start place'}
-
                         />
                     </BlockDetail>
                     <BlockDetail>
                         <PlacesInput
                             imagesrc={'end'}
                             placeholder={'Trip end place'}
-
                         />
                     </BlockDetail>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView behavior="position">
-                    <Button buttonText={'Create Trip'} />
+                    <Button buttonText={'Create Trip'} onPress={this.addTrip.bind(this)} />
                 </KeyboardAvoidingView>
             </ScrollView>
 
@@ -64,3 +69,16 @@ const styles = StyleSheet.create({
 
     }
 });
+
+mapStateToProps = ({ trip }) => {
+
+    const { tripStartPlace, tripEndPlace, selectedPlace } = trip;
+    return {
+        tripStartPlace,
+        tripEndPlace,
+        selectedPlace
+    }
+
+}
+
+export default connect(mapStateToProps, { onAddTrip })(AddTrip)

@@ -1,4 +1,4 @@
-import { ADD_TRIP,SET_SELECTED_PLACE } from '../actions/types';
+import { ADD_TRIP,UPDATE_SELECTED_PLACE, SHOW_MODAL } from '../actions/types';
 
 const INITIAL_STATE = { tripStartPlace:'' , 
                         tripEndPlace: '',
@@ -10,8 +10,10 @@ export default (state = INITIAL_STATE ,action ) =>{
     switch (action.type){
         case ADD_TRIP:
         return {...state ,tripAdded: true}
-        case SET_SELECTED_PLACE:
-        return { ...state, selectedPlace : payload.selectedPlace, modalVisible:false }
+        case UPDATE_SELECTED_PLACE:
+        return { ...state, tripStartPlace : action.tripStartPlace, tripEndPlace:action.tripEndPlace, modalVisible:false }
+        case SHOW_MODAL:
+        return { ...state, modalVisible:action.payload }
         default:
         return state;
     }

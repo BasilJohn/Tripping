@@ -1,51 +1,45 @@
 import React from 'react';
 import { View, Image, TextInput, StyleSheet, TouchableOpacity, Modal, Text, TouchableHighlight } from 'react-native';
 import { GooglePlacesInput } from './GooglePlacesInput';
+import { updateSelectedPlace, showModal } from '../../actions';
+import { connect } from 'react-redux';
 
 const IMAGES = {
     start: require('./Images/GooglePlaces.png'),
     end: require('./Images/redtarget.png')
 }
 
-export default class PlacesInput extends React.Component {
+class PlacesInput extends React.Component {
 
-    state = {
-        modalVisible: false,
-        selectedPlace : ''
-    }
     toggleModal(visible) {
-        this.setState({ modalVisible: visible });
+        this.props.showModal(visible);
     }
-    setSelectedPlace = (placeSelected) => {
-        this.setState({
-            selectedPlace: placeSelected,
-            modalVisible: false 
-        });
+    setSelectedPlace = (placeSelected, source) => {
+        this.props.updateSelectedPlace(placeSelected, source, this.props.tripStartPlace, this.props.tripEndPlace);
     }
 
     render(props) {
         return (
             <View style={styles.containerStyle}>
                 <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} />
-                <TouchableOpacity style={styles.touchStyle}  onPress={() => { this.toggleModal(true) }}>
+                <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true) }}>
                     <TextInput
                         secureTextEntry={this.props.secureTextEntry}
                         autoCorrect={false}
                         placeholder={this.props.placeholder}
-                        value={this.state.selectedPlace}
+                        value={this.props.imagesrc === 'start' ? this.props.tripStartPlace : this.props.tripEndPlace}
                         onChangeText={this.props.onChangeText}
                         pointerEvents="none"
                     />
                 </TouchableOpacity>
                 <Modal animationType={"slide"} transparent={false}
-                    visible={this.state.modalVisible}
+                    visible={this.props.modalVisible}
                     onRequestClose={() => { console.log('closed') }}>
                     <View style={styles.modal}>
-                        <TouchableOpacity style={styles.closeStyle} onPress={() => { this.toggleModal(!this.state.modalVisible) }}>
+                        <TouchableOpacity style={styles.closeStyle} onPress={() => { this.toggleModal(!this.props.modalVisible) }}>
                             <Text style={styles.textStyle} >Close</Text>
                         </TouchableOpacity>
-                        
-                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace } />
+                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace} source={this.props.imagesrc} />
                     </View>
                 </Modal>
             </View>
@@ -96,11 +90,19 @@ const styles = StyleSheet.create({
     textStyle: {
         color: '#F1F1F2',
         fontSize: 16,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     }
 
 });
 
+mapStateToProps = ({ trip }) => {
+    const { tripStartPlace, tripEndPlace, selectedPlace, modalVisible } = trip;
+    return {
+        tripStartPlace,
+        tripEndPlace,
+        selectedPlace,
+        modalVisible
+    }
+}
 
-
-export { PlacesInput };
+export default connect(mapStateToProps, { updateSelectedPlace, showModal })(PlacesInput)
