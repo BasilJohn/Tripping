@@ -20,7 +20,7 @@ const GooglePlacesInput = (props) => {
       fetchDetails={true}
       renderDescription={row => row.description} // custom description render
       onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        props.setSelectedPlace(data.description,props.source);
+        props.setSelectedPlace(data.description);
       }}
       
       getDefaultValue={() => ''}

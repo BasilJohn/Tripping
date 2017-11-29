@@ -54,10 +54,11 @@ export const updateSelectedPlace = (placeSelected, source, sp, ep) => {
         source: source,
     };
 };
-export const showModal = (visible) => {
+export const showModal = (visible,source) => {
     return {
         type: SHOW_MODAL,
-        payload: visible
+        payload: visible,
+        placeSource:source
     };
 };
 

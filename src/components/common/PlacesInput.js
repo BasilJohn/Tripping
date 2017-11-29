@@ -11,27 +11,44 @@ const IMAGES = {
 
 class PlacesInput extends React.Component {
 
-    toggleModal(visible) {
-        this.props.showModal(visible);
+
+    toggleModal(visible, source) {
+        this.props.showModal(visible, source);
     }
-    setSelectedPlace = (placeSelected, source) => {
-        this.props.updateSelectedPlace(placeSelected, source, this.props.tripStartPlace, this.props.tripEndPlace);
+    setSelectedPlace = (placeSelected) => {
+         this.props.updateSelectedPlace(placeSelected, this.props.source, this.props.tripStartPlace, this.props.tripEndPlace);
     }
 
     render(props) {
+
         return (
-            <View style={styles.containerStyle}>
-                <Image style={styles.imageStyle} source={IMAGES[this.props.imagesrc]} />
-                <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true) }}>
-                    <TextInput
-                        secureTextEntry={this.props.secureTextEntry}
-                        autoCorrect={false}
-                        placeholder={this.props.placeholder}
-                        value={this.props.imagesrc === 'start' ? this.props.tripStartPlace : this.props.tripEndPlace}
-                        onChangeText={this.props.onChangeText}
-                        pointerEvents="none"
-                    />
-                </TouchableOpacity>
+            <View>
+                <View style={styles.containerStyle}>
+                    <Image style={styles.imageStyle} source={IMAGES['start']} />
+                    <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true, 'start') }}>
+                        <TextInput
+                            secureTextEntry={this.props.secureTextEntry}
+                            autoCorrect={false}
+                            placeholder={'Trip start place'}
+                            value={this.props.tripStartPlace}
+                            onChangeText={this.props.onChangeText}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.containerStyle}>
+                    <Image style={styles.imageStyle} source={IMAGES['end']} />
+                    <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true, 'end') }}>
+                        <TextInput
+                            secureTextEntry={this.props.secureTextEntry}
+                            autoCorrect={false}
+                            placeholder={'Trip end place'}
+                            value={this.props.tripEndPlace}
+                            onChangeText={this.props.onChangeText}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+                </View>
                 <Modal animationType={"slide"} transparent={false}
                     visible={this.props.modalVisible}
                     onRequestClose={() => { console.log('closed') }}>
@@ -39,7 +56,7 @@ class PlacesInput extends React.Component {
                         <TouchableOpacity style={styles.closeStyle} onPress={() => { this.toggleModal(!this.props.modalVisible) }}>
                             <Text style={styles.textStyle} >Close</Text>
                         </TouchableOpacity>
-                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace} source={this.props.imagesrc} />
+                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace} source={this.props.source} />
                     </View>
                 </Modal>
             </View>
@@ -96,12 +113,13 @@ const styles = StyleSheet.create({
 });
 
 mapStateToProps = ({ trip }) => {
-    const { tripStartPlace, tripEndPlace, selectedPlace, modalVisible } = trip;
+    const { tripStartPlace, tripEndPlace, selectedPlace, modalVisible, source } = trip;
     return {
         tripStartPlace,
         tripEndPlace,
         selectedPlace,
-        modalVisible
+        modalVisible,
+        source
     }
 }
 

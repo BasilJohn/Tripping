@@ -29,16 +29,7 @@ class AddTrip extends React.Component {
                         <Text style={styles.labelStyle}>{'Add your Trip details here'}</Text>
                     </View>
                     <BlockDetail>
-                        <PlacesInput
-                            imagesrc={'start'}
-                            placeholder={'Trip start place'}
-                        />
-                    </BlockDetail>
-                    <BlockDetail>
-                        <PlacesInput
-                            imagesrc={'end'}
-                            placeholder={'Trip end place'}
-                        />
+                        <PlacesInput />
                     </BlockDetail>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView behavior="position">
@@ -75,7 +66,7 @@ const styles = StyleSheet.create({
 
 mapStateToProps = ({ trip }) => {
 
-    const { tripStartPlace, tripEndPlace, selectedPlace ,tripAdded } = trip;
+    const { tripStartPlace, tripEndPlace, selectedPlace, tripAdded } = trip;
     return {
         tripStartPlace,
         tripEndPlace,
