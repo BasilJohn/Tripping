@@ -6,8 +6,7 @@ import {
     LOGIN_USER_FAIL,
     UPDATE_SELECTED_PLACE,
     SHOW_MODAL,
-    ADD_TRIP,
-    SHOW_TRIP_LIST
+    TRIPS_FETCH_SUCCESS
 } from './types';
 import firebase from 'firebase';
 
@@ -15,14 +14,14 @@ export const onEmailChanged = (text) => {
     return {
         type: EMAIL_CHANGED,
         payload: text
-    }
+    };
 };
 
 export const onPasswordChanged = (text) => {
     return {
         type: PASSWORD_CHANGED,
         payload: text
-    }
+    };
 };
 
 export const onLoginUser = ({ email, password }) => {
@@ -35,17 +34,17 @@ export const onLoginUser = ({ email, password }) => {
                     .then(user => loginUserSuccess(dispatch, user))
                     .catch(() => loginUserFail(dispatch))
             })
-    }
+    };
 };
 
 
 const loginUserSuccess = (dispatch, user) => {
     dispatch({ type: LOGIN_USER_SUCESS, payload: user });
-}
+};
 
 const loginUserFail = (dispatch) => {
     dispatch({ type: LOGIN_USER_FAIL });
-}
+};
 
 export const updateSelectedPlace = (placeSelected, source, sp, ep) => {
     return {
@@ -53,14 +52,14 @@ export const updateSelectedPlace = (placeSelected, source, sp, ep) => {
         tripStartPlace: source === 'start' ? placeSelected : sp,
         tripEndPlace: source === 'end' ? placeSelected : ep,
         source: source,
-    }
-}
+    };
+};
 export const showModal = (visible) => {
     return {
         type: SHOW_MODAL,
         payload: visible
-    }
-}
+    };
+};
 
 export const onAddTrip = (tripStartPlace, tripEndPlace) => {
     const { currentUser } = firebase.auth();
@@ -68,5 +67,17 @@ export const onAddTrip = (tripStartPlace, tripEndPlace) => {
         firebase.database().ref(`/Trip/${currentUser.uid}/Trips`)
             .push({ tripStartPlace, tripEndPlace })
             .then(() => { dispatch({ type: SHOW_TRIP_LIST, payload: true }) });
-    }
-}
+    };
+};
+
+
+export const fetchTripList = ()=>{
+    const { currentUser } = firebase.auth();
+
+    return(dispatch)=>{
+        firebase.database().ref(`/Trip/${currentUser.uid}/Trips`)
+        .on('value',snapshot=>{
+          dispatch({type:TRIPS_FETCH_SUCCESS ,payload : snapshot.val() });
+        });
+    };
+};
