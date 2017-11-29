@@ -11,7 +11,6 @@ const IMAGES = {
 
 class PlacesInput extends React.Component {
 
-
     toggleModal(visible, source) {
         this.props.showModal(visible, source);
     }
@@ -19,9 +18,12 @@ class PlacesInput extends React.Component {
          this.props.updateSelectedPlace(placeSelected, this.props.source, this.props.tripStartPlace, this.props.tripEndPlace);
     }
 
-    render(props) {
-
-        return (
+  
+    render() {
+ 
+        const { modalVisible,tripStartPlace, tripEndPlace,source } = this.props;
+        const modalStatus = modalVisible ? true : false ;
+          return (
             <View>
                 <View style={styles.containerStyle}>
                     <Image style={styles.imageStyle} source={IMAGES['start']} />
@@ -30,7 +32,7 @@ class PlacesInput extends React.Component {
                             secureTextEntry={this.props.secureTextEntry}
                             autoCorrect={false}
                             placeholder={'Trip start place'}
-                            value={this.props.tripStartPlace}
+                            value={tripStartPlace}
                             onChangeText={this.props.onChangeText}
                             pointerEvents="none"
                         />
@@ -43,20 +45,20 @@ class PlacesInput extends React.Component {
                             secureTextEntry={this.props.secureTextEntry}
                             autoCorrect={false}
                             placeholder={'Trip end place'}
-                            value={this.props.tripEndPlace}
+                            value={tripEndPlace}
                             onChangeText={this.props.onChangeText}
                             pointerEvents="none"
                         />
                     </TouchableOpacity>
                 </View>
                 <Modal animationType={"slide"} transparent={false}
-                    visible={this.props.modalVisible}
+                    visible={modalStatus}
                     onRequestClose={() => { console.log('closed') }}>
                     <View style={styles.modal}>
-                        <TouchableOpacity style={styles.closeStyle} onPress={() => { this.toggleModal(!this.props.modalVisible) }}>
+                        <TouchableOpacity style={styles.closeStyle} onPress={() => { this.toggleModal(!modalStatus) }}>
                             <Text style={styles.textStyle} >Close</Text>
                         </TouchableOpacity>
-                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace} source={this.props.source} />
+                        <GooglePlacesInput setSelectedPlace={this.setSelectedPlace} source={source} />
                     </View>
                 </Modal>
             </View>

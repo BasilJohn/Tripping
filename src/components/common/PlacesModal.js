@@ -1,18 +1,27 @@
 import React from 'react';
 import { Modal, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import {  showModal ,updateSelectedPlace } from '../../actions';
+import { showModal, updateSelectedPlace } from '../../actions';
 import { GooglePlacesInput } from '../common';
 
 class PlacesModal extends React.Component {
-    
-  
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.modalVisible !== nextProps.modalVisible) {
+           
+            this.props.showModal(true,'')
+        }
+        else{
+            this.props.showModal(false,'')
+        }
+    }
+
     setSelectedPlace = (placeSelected) => {
         this.props.updateSelectedPlace(placeSelected, this.props.source, this.props.tripStartPlace, this.props.tripEndPlace);
     }
 
     render() {
-   
+
         return (
             <Modal animationType={"slide"} transparent={false}
                 visible={this.props.modalVisible}
@@ -62,4 +71,4 @@ mapStateToProps = ({ trip }) => {
 }
 
 
-export default connect(mapStateToProps, {showModal,updateSelectedPlace})(PlacesModal);
+export default connect(mapStateToProps, { showModal, updateSelectedPlace })(PlacesModal);
