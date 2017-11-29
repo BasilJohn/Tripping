@@ -6,7 +6,8 @@ import {
     LOGIN_USER_FAIL,
     UPDATE_SELECTED_PLACE,
     SHOW_MODAL,
-    TRIPS_FETCH_SUCCESS
+    TRIPS_FETCH_SUCCESS,
+    SHOW_TRIP_LIST
 } from './types';
 import firebase from 'firebase';
 
