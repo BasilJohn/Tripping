@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import {  ListView, StyleSheet } from 'react-native';
+import { ListView, StyleSheet } from 'react-native';
 import { fetchTripList } from '../../actions';
 import TripList from './ListItem';
 
@@ -20,24 +20,23 @@ class YouFeed extends React.Component {
 
     }
 
-    createDataSource({ trip }) {
+    createDataSource({ tripList }) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 != r2
         });
 
-        this.dataSource = ds.cloneWithRows(this.props.tripList)
+        this.dataSource = ds.cloneWithRows(tripList)
     };
 
-    renderRow (trip) {
-      
-        return <TripList trip={trip}/>
+    renderRow(trip) {
+        return <TripList trip={trip} />
     }
     render(props) {
-       
+
         return (
-            
+
             <ListView enableEmptySections dataSource={this.dataSource}
-            renderRow={this.renderRow} />
+                renderRow={this.renderRow} />
         );
     }
 };
@@ -49,9 +48,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-   
-    const tripList= _.map(state.trip.tripList,(val,uid)=>{
-        return {...val,uid};
+
+    const tripList = _.map(state.trip.tripList, (val, uid) => {
+        return { ...val, uid };
     });
 
     return { tripList }
