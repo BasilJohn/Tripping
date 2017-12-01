@@ -98,9 +98,9 @@ class Login extends React.Component {
 
   render(props) {
     return (
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+      <View style={styles.contentContainerStyle}>
         {this.renderContent()}
-      </ScrollView>
+      </View>
     );
   }
 }

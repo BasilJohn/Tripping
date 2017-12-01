@@ -28,7 +28,6 @@ export default class Footer extends React.Component {
 const styles = StyleSheet.create({
 
     containerStyle: {
-        flex: 1,
         flexDirection: 'row',
         paddingBottom: 1,
         justifyContent: 'space-between',
