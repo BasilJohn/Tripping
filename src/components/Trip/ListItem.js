@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity,Image } from 'react-native';
 import { BlockDetail } from '../common';
 
 export default class ListItem extends React.Component {
@@ -10,6 +10,12 @@ export default class ListItem extends React.Component {
         return (
             <TouchableOpacity style={styles.touchStyle}>
                 <View style={styles.tileStyle}>
+                    <BlockDetail>
+                        <Image
+                            style={styles.imageTileStyle}
+                            source={require('../../images/IntroImage.jpg')}
+                        />
+                    </BlockDetail>
                     <BlockDetail>
                         <Text style={styles.titleStyle}>
                             Your trip from {tripStartPlace} to {tripEndPlace}
@@ -23,18 +29,33 @@ export default class ListItem extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    titleStyle: {
-        fontSize: 15
+    touchStyle: {
+        paddingBottom: 5
     },
     tileStyle: {
-        borderWidth: 1,
-        borderColor: '#000',
+
+        flex: 1,
+        flexDirection: 'row',
         padding: 5,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.8,
+        elevation: 1,
+        height: 100
+    },
+    titleStyle: {
+        flex: 2,
+        fontSize: 15,
+        justifyContent: 'center',
+        alignSelf: 'center',
+
+    },
+    imageTileStyle: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        width:100,
+        marginRight:5
     },
-    touchStyle: {
-        paddingBottom: 2
-    }
 });
