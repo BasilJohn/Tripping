@@ -16,11 +16,10 @@ class AddTrip extends React.Component {
     };
 
     addTrip() {
-        this.props.onAddTrip(this.props.tripStartPlace, this.props.tripEndPlace)
-        // if(this.props.tripAdded){
-        //     this.props.navigation.navigate('MainFeed')
-        // }
+        this.props.onAddTrip(this.props.tripStartPlace, this.props.tripEndPlace);
+        this.props.navigation.goBack(null);
     }
+
     render(props) {
         return (
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
@@ -38,6 +37,7 @@ class AddTrip extends React.Component {
             </ScrollView>
 
         );
+
     }
 
 }
