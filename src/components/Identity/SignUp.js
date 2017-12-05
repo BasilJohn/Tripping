@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { Block, BlockDetail, Button, Input, Spinner } from '../common';
+import { onSignUpTextChanged, onSignUpUser } from '../../actions';
+import { connect } from 'react-redux';
 import firebase from 'firebase';
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
 
-    state = { email: '', password: '', error: '', loading: false };
 
     static navigationOptions = {
         title: 'Sign Up',
@@ -14,32 +15,13 @@ export default class SignUp extends React.Component {
     };
 
     onPressButton() {
-        const { email, password } = this.state;
-        this.setState({ error: '', loading: true });
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
-            .catch(() => {
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(this.onLoginSuccess.bind(this))
-                    .catch(this.onLoginFail.bind(this));
-            });
-    }
-    onLoginSuccess() {
-        this.setState({
-            email: '',
-            password: '',
-            loading: false,
-            error: ''
-        });
+        const { email, password, username, fullname } = this.props;
+        this.props.onSignUpUser({ email, password, username, fullname });
 
-    }
-    onLoginFail() {
-
-        this.setState({ loading: false, error: 'Authentication Failed' });
     }
 
     renderButton() {
-        if (this.state.loading) {
+        if (this.props.loading) {
             return <Spinner />;
         }
         return (<Button
@@ -47,9 +29,13 @@ export default class SignUp extends React.Component {
             buttonText={'Create Profile'} />);
     }
 
+    onSignUpTextChange(prop, value) {
+
+        this.props.onSignUpTextChanged(prop, value);
+    }
 
     render(props) {
-
+      
         return (
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <KeyboardAvoidingView behavior="position">
@@ -67,22 +53,26 @@ export default class SignUp extends React.Component {
                         <Input
                             placeholder={'user@gmail.com'}
                             inputText={'Email'}
-                            value={this.state.email}
-                            onChangeText={text => this.setState({ email: text })} />
+                            value={this.props.email}
+                            onChangeText={this.onSignUpTextChange.bind(this, 'email_changed')} />
                         <Input
                             secureTextEntry
                             placeholder={'Password'}
                             inputText={'Password'}
-                            value={this.state.password}
-                            onChangeText={text => this.setState({ password: text })} />
+                            value={this.props.password}
+                            onChangeText={this.onSignUpTextChange.bind(this, 'password_changed')} />
                         <Input
                             placeholder={'Username'}
-                            inputText={'Username'} />
+                            inputText={'Username'}
+                            value={this.props.username}
+                            onChangeText={this.onSignUpTextChange.bind(this, 'username_changed')} />
                         <Input
                             placeholder={'Fullname'}
-                            inputText={'Fullname'} />
+                            inputText={'Fullname'}
+                            value={this.props.fullname}
+                            onChangeText={this.onSignUpTextChange.bind(this, 'fullname_changed')} />
                         <Text style={styles.errorTextStyle}>
-                            {this.state.error}
+                            {this.props.error}
                         </Text>
                     </BlockDetail>
                 </KeyboardAvoidingView>
@@ -122,3 +112,12 @@ const styles = StyleSheet.create({
     }
 
 });
+
+const mapStateToProps = ({ auth }) => {
+    const { email, password, error, loading, username, fullname } = auth;
+    return {
+        email, password, error, loading, username, fullname
+    }
+}
+
+export default connect(mapStateToProps, { onSignUpTextChanged, onSignUpUser })(SignUp)
