@@ -7,6 +7,7 @@ import SignUpScreen from './Identity/SignUp';
 import LoginScreen from './Identity/Login';
 import FeedScreen from './Initial/MainFeed';
 import AddTripScreen from './Trip/AddTrip';
+import TripStoryScreen from './Trip/TripStory';
 
 class Opening extends React.Component {
 
@@ -69,6 +70,9 @@ const Stacks = StackNavigator({
   },
   AddTrip: {
     screen: AddTripScreen
+  },
+  TripStory : {
+    screen : TripStoryScreen
   }
 });
 
