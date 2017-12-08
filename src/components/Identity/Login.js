@@ -68,6 +68,7 @@ class Login extends React.Component {
         return <MainFeed />;
       case false:
         return (
+          <ScrollView contentContainerStyle={styles.loginStyle}>
           <KeyboardAvoidingView behavior="position" >
             <Block>
               <BlockDetail>
@@ -90,7 +91,8 @@ class Login extends React.Component {
                 </View>
               </BlockDetail>
             </Block>
-          </KeyboardAvoidingView>);
+          </KeyboardAvoidingView>
+          </ScrollView>);
       default:
         return (<Spinner />);
     }
@@ -113,11 +115,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   contentContainerStyle: {
+    flex:1,
+    justifyContent:'center',
+    flexDirection:'column',
+    backgroundColor: '#fff',
+  },
+  loginStyle:{
     flexGrow: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
+  }
 
 });
 
