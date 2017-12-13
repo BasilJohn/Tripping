@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button, Input, Spinner, Block, BlockDetail, NavigationLink } from '../common';
-import { onEmailChanged, onPasswordChanged,onLoginUser } from '../../actions';
+import { onEmailChanged, onPasswordChanged,onLoginUser,setNavigationProps } from '../../actions';
 import MainFeed from '../Initial/MainFeed';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
@@ -46,6 +46,8 @@ class Login extends React.Component {
       }
 
     });
+
+    this.props.setNavigationProps(this.props.navigation);
   }
 
   onLoginButtonPress() {
@@ -128,15 +130,19 @@ const styles = StyleSheet.create({
 
 });
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth },ownProps ) => {
+  
+  const { navigation } =ownProps;
+
   const { email ,password ,error, loading } = auth;
+ 
   return {
-    email, password ,error ,loading
+    email, password ,error ,loading,navigation
   }
 }
 
 export default connect(mapStateToProps, 
   { onEmailChanged,
     onPasswordChanged,
-    onLoginUser
+    onLoginUser,setNavigationProps
    })(Login)
