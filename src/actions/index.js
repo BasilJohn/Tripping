@@ -56,9 +56,18 @@ export const onSignUpUser = ({ email, password, username, fullname }) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+      .then(user => signUpUserSuccess(dispatch, user, username, fullname))
       .catch(() => loginUserFail(dispatch));
   };
+};
+
+const signUpUserSuccess = (dispatch, user, username, fullname) => {
+  const { currentUser } = firebase.auth();
+  firebase
+    .database()
+    .ref(`/Users/${currentUser.uid}/User`)
+    .push({ username: username, fullname: fullname });
+  dispatch({ type: LOGIN_USER_SUCESS, payload: user });
 };
 
 const loginUserSuccess = (dispatch, user) => {
@@ -90,7 +99,7 @@ export const onAddTrip = (tripStartPlace, tripEndPlace) => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/Trip/${currentUser.uid}/Trips`)
+      .ref(`/Trips/${currentUser.uid}/UserTrips`)
       .push({ tripStartPlace, tripEndPlace })
       .then(() => {
         dispatch({ type: SHOW_TRIP_LIST, payload: true });
@@ -104,7 +113,7 @@ export const fetchTripList = () => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/Trip/${currentUser.uid}/Trips`)
+      .ref(`/Trips/${currentUser.uid}/UserTrips`)
       .on("value", snapshot => {
         dispatch({ type: TRIPS_FETCH_SUCCESS, payload: snapshot.val() });
       });
@@ -112,7 +121,7 @@ export const fetchTripList = () => {
 };
 
 export const setNavigationProps = navigationProps => {
-    return {
+  return {
     type: SET_NAVIGATION_PROPS,
     payload: navigationProps
   };
